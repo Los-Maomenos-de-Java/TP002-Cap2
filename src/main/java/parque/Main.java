@@ -12,6 +12,7 @@ public class Main {
     public static void main(String[] args) {
     	
     	usuarios.addAll(DAOFactory.getUsuarioDAO().findAll());
+    	usuarios.forEach(System.out::println);
         Boleteria b = new Boleteria();
     }
 }

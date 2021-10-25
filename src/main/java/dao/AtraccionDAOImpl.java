@@ -2,7 +2,6 @@ package dao;
 
 import jdbc.ConnectionProvider;
 import model.Atraccion;
-import model.Ofertable;
 import model.TipoDeAtraccion;
 
 import java.sql.Connection;
@@ -11,9 +10,9 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AtraccionDAOImpl implements OfertableDAO {
+public class AtraccionDAOImpl implements GenericDAO<Atraccion> {
     @Override
-    public List<Ofertable> findAll() {
+    public List<Atraccion> findAll() {
         try {
             String sql = "SELECT * FROM atracciones";
             Connection conn = ConnectionProvider.getConnection();
@@ -21,7 +20,7 @@ public class AtraccionDAOImpl implements OfertableDAO {
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet resultados = statement.executeQuery();
 
-            List<Ofertable> atracciones = new LinkedList<>();
+            List<Atraccion> atracciones = new LinkedList<>();
             while (resultados.next()) {
                 atracciones.add(toAtraccion(resultados));
             }
@@ -33,13 +32,8 @@ public class AtraccionDAOImpl implements OfertableDAO {
     }
 
     @Override
-    public int update(Ofertable ofertable) {
+    public int update(Atraccion atraccion) {
         return 0;
-    }
-
-    @Override
-    public Ofertable encontrarOfertablePorNombre(String nombre) {
-        return null;
     }
 
     private Atraccion toAtraccion(ResultSet resultados) {
@@ -58,7 +52,7 @@ public class AtraccionDAOImpl implements OfertableDAO {
         }
     }
 
-    private TipoDeAtraccion getTipoAtraccion(int id) {
+    public static TipoDeAtraccion getTipoAtraccion(int id) {
         try {
             String sql = "SELECT nombre FROM tipos_de_atraccion WHERE id = ?";
 

@@ -1,6 +1,6 @@
 package dao;
 
-import parque.Itinerario;
+import model.Itinerario;
 
 import java.util.List;
 

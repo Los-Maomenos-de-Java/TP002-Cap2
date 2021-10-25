@@ -1,6 +1,6 @@
 package dao;
 
-import parque.Itinerario;
+import model.Itinerario;
 
 public interface ItinerarioDAO extends GenericDAO<Itinerario> {
     int insert();

@@ -1,7 +1,7 @@
 package dao;
 
 public class DAOFactory {
-    public static OfertableDAO getAtraccionDAO() {
+    public static AtraccionDAOImpl getAtraccionDAO() {
         return new AtraccionDAOImpl();
     }
 

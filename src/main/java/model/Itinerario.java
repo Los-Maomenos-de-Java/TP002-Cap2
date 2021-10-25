@@ -1,7 +1,4 @@
-package parque;
-
-import model.Atraccion;
-import model.Ofertable;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;

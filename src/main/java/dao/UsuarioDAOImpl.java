@@ -38,7 +38,7 @@ public class UsuarioDAOImpl implements GenericDAO<Usuario> {
             var nombre = resultados.getString(2);
             var presupuesto = resultados.getDouble(3);
             var tiempo_disponible = resultados.getDouble(4);
-            TipoDeAtraccion tipo_atraccion_preferido = getTipoAtraccion(resultados.getInt(5));
+            TipoDeAtraccion tipo_atraccion_preferido = AtraccionDAOImpl.getTipoAtraccion(resultados.getInt(5));
             
 
             return new Usuario(id, nombre, presupuesto, tiempo_disponible, tipo_atraccion_preferido);
@@ -47,23 +47,6 @@ public class UsuarioDAOImpl implements GenericDAO<Usuario> {
             throw new MissingDataException(e);
         }
 
-	}
-
-	private TipoDeAtraccion getTipoAtraccion(int id) {
-		   try {
-	            String sql = "SELECT nombre FROM tipos_de_atraccion WHERE id = ?";
-
-	            Connection conn = ConnectionProvider.getConnection();
-
-	            PreparedStatement statement = conn.prepareStatement(sql);
-	            statement.setInt(1, id);
-
-	            ResultSet resultados = statement.executeQuery();
-	            return TipoDeAtraccion.valueOf(resultados.getString(1));
-
-	        } catch (Exception e) {
-	            throw new MissingDataException(e);
-	        }
 	}
 
 	@Override

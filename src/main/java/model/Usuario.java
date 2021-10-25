@@ -9,8 +9,6 @@ public class Usuario {
 	private String nombre;
 	private double presupuestoActual;
 	private double tiempoDisponible;
-	private final double PRESUPUESTO_INICIAL;
-	private final double TIEMPO_INICIAL;
 	private TipoDeAtraccion tipoDeAtraccionPreferida;
 	private List<Ofertable> ofertasCompradas = new ArrayList<>();
 
@@ -18,32 +16,16 @@ public class Usuario {
 			TipoDeAtraccion tipo_atraccion_preferido) {
 		this.id = id;
 		this.nombre = nombre;
-		if (presupuestoActual < 0) {
-			throw new Error("Presupuesto Inválido");
-		}
-		if (tiempoDisponible < 0) {
-			throw new Error("Tiempo Disponible Inválido");
-		}
-		this.PRESUPUESTO_INICIAL = presupuesto;
-		this.TIEMPO_INICIAL = tiempo_disponible;
-		this.tipoDeAtraccionPreferida = tipo_atraccion_preferido;
-	}
+        this.presupuestoActual = presupuesto;
+        this.tiempoDisponible = tiempo_disponible;
+        this.tipoDeAtraccionPreferida = tipo_atraccion_preferido;
 
-	public Usuario(String nombre, double presupuestoActual, double tiempoDisponible,
-			TipoDeAtraccion tipoDeAtraccionPreferida, List<Ofertable> ofertasCompradas) {
-		this.nombre = nombre;
-		if (presupuestoActual < 0) {
-			throw new Error("Presupuesto Inválido");
-		}
-		if (tiempoDisponible < 0) {
-			throw new Error("Tiempo Disponible Inválido");
-		}
-		this.PRESUPUESTO_INICIAL = presupuestoActual;
-		this.TIEMPO_INICIAL = tiempoDisponible;
-		this.presupuestoActual = PRESUPUESTO_INICIAL;
-		this.tiempoDisponible = TIEMPO_INICIAL;
-		this.tipoDeAtraccionPreferida = tipoDeAtraccionPreferida;
-		this.ofertasCompradas = ofertasCompradas;
+        if (presupuestoActual < 0) {
+            throw new Error("Presupuesto Inválido");
+        }
+        if (tiempoDisponible < 0) {
+            throw new Error("Tiempo Disponible Inválido");
+        }
 	}
 
 	public boolean comprarOferta(Ofertable ofertable) {
@@ -75,14 +57,6 @@ public class Usuario {
 		return tiempoDisponible;
 	}
 
-	public double getPresupuestoInicial() {
-		return this.PRESUPUESTO_INICIAL;
-	}
-
-	public double getTiempoInicial() {
-		return this.TIEMPO_INICIAL;
-	}
-
 	public TipoDeAtraccion getTipoDeAtraccionPreferida() {
 		return this.tipoDeAtraccionPreferida;
 	}
@@ -107,4 +81,15 @@ public class Usuario {
 	public List<Ofertable> getOfertasCompradas() {
 		return this.ofertasCompradas;
 	}
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", presupuestoActual=" + presupuestoActual +
+                ", tiempoDisponible=" + tiempoDisponible +
+                ", tipoDeAtraccionPreferida=" + tipoDeAtraccionPreferida +
+                '}';
+    }
 }

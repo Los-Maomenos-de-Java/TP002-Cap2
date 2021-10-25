@@ -1,6 +1,7 @@
 package parque;
 
 import model.Atraccion;
+import model.Itinerario;
 import model.Ofertable;
 import model.Usuario;
 
