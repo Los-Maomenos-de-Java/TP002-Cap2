@@ -24,6 +24,7 @@ public class Atraccion implements Ofertable {
             throw new Error("Cupo Inválido");
         }
 
+        this.id = id;
         this.nombre = nombre;
         this.costoVisita = costoVisita;
         this.tiempoPromedio = tiempoPromedio;

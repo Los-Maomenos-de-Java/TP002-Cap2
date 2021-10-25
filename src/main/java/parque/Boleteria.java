@@ -1,5 +1,6 @@
 package parque;
 
+import dao.DAOFactory;
 import model.Atraccion;
 import model.Ofertable;
 import model.Usuario;
@@ -14,10 +15,9 @@ public class Boleteria {
     private Vendedor vendedor = new Vendedor();
 
     public Boleteria() {
-        String archivoAtracciones = "archivos/AtraccionesSimpsons.txt";
-        String archivoPromociones = "archivos/PromocionesSimpsons.txt";
-        //ofertables = ManejadorDeArchivos.leerAtracciones(archivoAtracciones);
-        //ofertables.addAll(ManejadorDeArchivos.leerPromociones(archivoPromociones));
+        ofertables.addAll(DAOFactory.getAtraccionDAO().findAll());
+        ofertables.addAll(DAOFactory.getPromocionDAO().findAll());
+        ofertables.forEach(System.out::println);
     }
 
     public static Atraccion obtenerAtraccionPorId(int id) {

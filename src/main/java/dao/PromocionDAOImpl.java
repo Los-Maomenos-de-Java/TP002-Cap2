@@ -67,11 +67,11 @@ public class PromocionDAOImpl implements GenericDAO<Promocion> {
                 var atraccionesGratisString = resultados.getString(4).split(",");
                 var atraccionesGratis = new Atraccion[atraccionesGratisString.length];
 
+                promocionAAgregar = new PromocionAxB(id, nombre, atraccionesGratis);
+
                 for (int i = 0; i < atraccionesGratisString.length; i++) {
                     atraccionesGratis[i] = Boleteria.obtenerAtraccionPorId(Integer.parseInt(atraccionesGratisString[i]));
                 }
-
-                promocionAAgregar = new PromocionAxB(id, nombre, atraccionesGratis);
 
                 for (Atraccion atraccion : atracciones) {
                     promocionAAgregar.agregarAtraccion(atraccion);

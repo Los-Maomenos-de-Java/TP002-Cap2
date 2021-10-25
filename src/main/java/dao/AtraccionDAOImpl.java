@@ -15,7 +15,7 @@ public class AtraccionDAOImpl implements OfertableDAO {
     @Override
     public List<Ofertable> findAll() {
         try {
-            String sql = "SELECT * FROM USERS";
+            String sql = "SELECT * FROM atracciones";
             Connection conn = ConnectionProvider.getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);

@@ -84,4 +84,13 @@ public abstract class Promocion implements Ofertable {
     public boolean esPromocion() {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Promocion{" +
+                "atracciones=" + atracciones +
+                ", id=" + id +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
 }

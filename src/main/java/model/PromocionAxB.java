@@ -22,4 +22,6 @@ public class PromocionAxB extends Promocion {
                 .filter(atraccion -> !atraccionesGratis.contains(atraccion))
                 .mapToDouble(Atraccion::getCosto).sum();
     }
+
+
 }
