@@ -21,9 +21,9 @@ public class AtraccionDAOImpl implements OfertableDAO {
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet resultados = statement.executeQuery();
 
-            List<Atraccion> atracciones = new LinkedList<>();
+            List<Ofertable> atracciones = new LinkedList<>();
             while (resultados.next()) {
-                atracciones.add(toUser(resultados));
+                atracciones.add(toAtraccion(resultados));
             }
 
             return atracciones;
