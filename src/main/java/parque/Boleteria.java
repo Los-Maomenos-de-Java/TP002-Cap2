@@ -16,14 +16,14 @@ public class Boleteria {
     public Boleteria() {
         String archivoAtracciones = "archivos/AtraccionesSimpsons.txt";
         String archivoPromociones = "archivos/PromocionesSimpsons.txt";
-        ofertables = ManejadorDeArchivos.leerAtracciones(archivoAtracciones);
-        ofertables.addAll(ManejadorDeArchivos.leerPromociones(archivoPromociones));
+        //ofertables = ManejadorDeArchivos.leerAtracciones(archivoAtracciones);
+        //ofertables.addAll(ManejadorDeArchivos.leerPromociones(archivoPromociones));
     }
 
-    public static Atraccion obtenerAtraccionPorNombre(String nombre) {
+    public static Atraccion obtenerAtraccionPorId(int id) {
         for (Ofertable ofertable : ofertables) {
             if (!ofertable.esPromocion()) {
-                if (ofertable.getNombre().equals(nombre)) {
+                if (ofertable.getId() == id) {
                     return ofertable.getAtracciones().get(0);
                 }
             }

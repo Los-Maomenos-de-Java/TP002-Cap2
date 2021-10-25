@@ -3,8 +3,8 @@ package model;
 public class PromocionAbsoluta extends Promocion {
     private double descuentoAbsoluto;
 
-    public PromocionAbsoluta(String nombre, double descuentoAbsoluto) {
-        super(nombre);
+    public PromocionAbsoluta(int id, String nombre, double descuentoAbsoluto) {
+        super(id, nombre);
         if (descuentoAbsoluto < 0) {
             throw new Error("Valor de Descuento Inválido");
         }

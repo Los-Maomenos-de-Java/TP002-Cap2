@@ -3,6 +3,8 @@ package model;
 import java.util.List;
 
 public interface Ofertable {
+    int getId();
+
     String getNombre();
 
     double getCosto();

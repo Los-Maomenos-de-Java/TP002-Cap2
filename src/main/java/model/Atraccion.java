@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class Atraccion implements Ofertable {
+    private int id;
     private String nombre;
     private double costoVisita;
     private double tiempoPromedio;
     private TipoDeAtraccion tipoDeAtraccion;
     private int cupo;
 
-    public Atraccion(String nombre, double costoVisita, double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion, int cupo) {
+    public Atraccion(int id, String nombre, double costoVisita, double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion, int cupo) {
         if (costoVisita < 0) {
             throw new Error("Costo Inválido");
         }
@@ -38,6 +39,11 @@ public class Atraccion implements Ofertable {
     @Override
     public boolean tieneCupo() {
         return this.cupo > 0;
+    }
+
+    @Override
+    public int getId() {
+        return this.id;
     }
 
     @Override

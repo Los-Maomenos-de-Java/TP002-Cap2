@@ -5,13 +5,15 @@ import java.util.List;
 
 public abstract class Promocion implements Ofertable {
     protected List<Atraccion> atracciones = new ArrayList<>();
+    private int id;
     private String nombre;
 
-    public Promocion(String nombre) {
+    public Promocion(int id, String nombre) {
+        this.id = id;
         this.nombre = nombre;
     }
 
-    protected void agregarAtraccion(Atraccion a) {
+    public void agregarAtraccion(Atraccion a) {
         if (atracciones.contains(a)) {
             throw new Error("Atraccion ya agregada");
         }
