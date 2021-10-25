@@ -44,13 +44,14 @@ public class AtraccionDAOImpl implements OfertableDAO {
 
     private Atraccion toAtraccion(ResultSet resultados) {
         try {
-            var nombre = resultados.getString(1);
-            var costo = resultados.getDouble(2);
-            var tiempo = resultados.getDouble(3);
-            var tipo = getTipoAtraccion(resultados.getInt(4));
-            var cupo = resultados.getInt(5);
+            var id = resultados.getInt(1);
+            var nombre = resultados.getString(2);
+            var costo = resultados.getDouble(3);
+            var tiempo = resultados.getDouble(4);
+            var tipo = getTipoAtraccion(resultados.getInt(5));
+            var cupo = resultados.getInt(6);
 
-            return new Atraccion(nombre, costo, tiempo, tipo, cupo);
+            return new Atraccion(id, nombre, costo, tiempo, tipo, cupo);
 
         } catch (Exception e) {
             throw new MissingDataException(e);

@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionProvider {
-    private static final String url = "jdbc:sqlite:TP002.Cap2.db";
+    private static final String url = "jdbc:sqlite:TP002-Cap2.db";
     private static Connection connection;
 
     public static Connection getConnection() throws SQLException {

@@ -83,7 +83,7 @@ public class Vendedor {
     }
 
     public void generarTicket(Usuario usuario) throws IOException {
-        ManejadorDeArchivos.generarTicket(usuario, ofertasVendidas);
+        //ManejadorDeArchivos.generarTicket(usuario, ofertasVendidas);
         this.ofertasVendidas.clear();
     }
 }

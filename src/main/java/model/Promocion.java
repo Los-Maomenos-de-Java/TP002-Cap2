@@ -40,6 +40,11 @@ public abstract class Promocion implements Ofertable {
     }
 
     @Override
+    public int getId() {
+        return this.id;
+    }
+
+    @Override
     public String getNombre() {
         return this.nombre;
     }
