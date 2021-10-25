@@ -23,5 +23,15 @@ public class PromocionAxB extends Promocion {
                 .mapToDouble(Atraccion::getCosto).sum();
     }
 
-
+    @Override
+    public String toString() {
+        return "Promocion AxB { " +
+                "Nombre: " + this.getNombre() +
+                "Atracciones: " + atracciones.stream().map(Atraccion::getNombre).collect(Collectors.toList()) +
+                "Costo sin descuento: $" + atracciones.stream().mapToDouble(Atraccion::getCosto).sum() +
+                "Atracciones gratis: " + this.atraccionesGratis +
+                "Costo: $" + this.getCosto() +
+                "Tiempo: " + this.getTiempo() +
+                " }";
+    }
 }

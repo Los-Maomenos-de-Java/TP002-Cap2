@@ -60,10 +60,7 @@ public class AtraccionDAOImpl implements OfertableDAO {
 
     private TipoDeAtraccion getTipoAtraccion(int id) {
         try {
-            String sql = "SELECT \"tipos_de_atraccion\".\"nombre\" " +
-                    "FROM \"tipos_de_atraccion\", \"atracciones\" " +
-                    "WHERE \"tipos_de_atraccion\".\"id\" = \"atracciones\".\"tipo_atraccion\" " +
-                    "AND \"atracciones\".\"id\" = ?";
+            String sql = "SELECT nombre FROM tipos_de_atraccion WHERE id = ?";
 
             Connection conn = ConnectionProvider.getConnection();
 

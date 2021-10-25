@@ -101,6 +101,7 @@ public class Atraccion implements Ofertable {
                 "Nombre: " + nombre +
                 ", Costo Visita: " + costoVisita +
                 ", Tiempo Promedio: " + tiempoPromedio +
+                ", Cupo: " + this.getCupo() +
                 ", Tipo de Atraccion=" + tipoDeAtraccion +
                 " }";
     }
