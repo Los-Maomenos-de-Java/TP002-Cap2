@@ -1,18 +1,21 @@
 package parque;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 import dao.DAOFactory;
 import model.Usuario;
 
 public class Main {
-	
-	private static List<Usuario> usuarios = new ArrayList<>();
-	
-    public static void main(String[] args) {
-    	
-    	usuarios.addAll(DAOFactory.getUsuarioDAO().findAll());
-    	usuarios.forEach(System.out::println);
-        Boleteria b = new Boleteria();
+    public static void main(String[] args) throws IOException {
+        List<Usuario> usuarios = DAOFactory.getUsuarioDAO().findAll();
+
+        System.out.println(DibujadorDeHomero.saludo());
+        Boleteria boleteria = new Boleteria();
+
+        for(Usuario usuario:usuarios) {
+            boleteria.ofrecerA(usuario);
+        }
+
+        System.out.println(DibujadorDeHomero.dibujarHomero());
     }
 }

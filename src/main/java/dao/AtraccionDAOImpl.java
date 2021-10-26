@@ -14,10 +14,10 @@ public class AtraccionDAOImpl implements GenericDAO<Atraccion> {
     @Override
     public List<Atraccion> findAll() {
         try {
-            String sql = "SELECT * FROM atracciones";
+            String allAtracciones = "SELECT * FROM atracciones";
             Connection conn = ConnectionProvider.getConnection();
 
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = conn.prepareStatement(allAtracciones);
             ResultSet resultados = statement.executeQuery();
 
             List<Atraccion> atracciones = new LinkedList<>();
@@ -33,7 +33,18 @@ public class AtraccionDAOImpl implements GenericDAO<Atraccion> {
 
     @Override
     public int update(Atraccion atraccion) {
-        return 0;
+        try {
+            String updateUsuario = "UPDATE atracciones SET cupo = ? WHERE id = ?";
+            Connection conn = ConnectionProvider.getConnection();
+
+            PreparedStatement statement = conn.prepareStatement(updateUsuario);
+            statement.setInt(1, atraccion.getCupo());
+            statement.setInt(2, atraccion.getId());
+
+            return statement.executeUpdate();
+        } catch (Exception e) {
+            throw new MissingDataException(e);
+        }
     }
 
     private Atraccion toAtraccion(ResultSet resultados) {
@@ -54,11 +65,11 @@ public class AtraccionDAOImpl implements GenericDAO<Atraccion> {
 
     public static TipoDeAtraccion getTipoAtraccion(int id) {
         try {
-            String sql = "SELECT nombre FROM tipos_de_atraccion WHERE id = ?";
+            String idTipoAtraccion = "SELECT nombre FROM tipos_de_atraccion WHERE id = ?";
 
             Connection conn = ConnectionProvider.getConnection();
 
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = conn.prepareStatement(idTipoAtraccion);
             statement.setInt(1, id);
 
             ResultSet resultados = statement.executeQuery();

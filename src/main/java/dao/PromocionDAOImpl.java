@@ -15,10 +15,10 @@ public class PromocionDAOImpl implements GenericDAO<Promocion> {
     @Override
     public List<Promocion> findAll() {
         try {
-            String sql = "SELECT * FROM promociones";
+            String allPromociones = "SELECT * FROM promociones";
             Connection conn = ConnectionProvider.getConnection();
 
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = conn.prepareStatement(allPromociones);
             ResultSet resultados = statement.executeQuery();
 
             List<Promocion> promociones = new LinkedList<>();
@@ -68,7 +68,7 @@ public class PromocionDAOImpl implements GenericDAO<Promocion> {
                 var atraccionesGratis = new Atraccion[atraccionesGratisString.length];
 
                 for (int i = 0; i < atraccionesGratisString.length; i++) {
-                    atraccionesGratis[i] = Boleteria.obtenerAtraccionPorId(Integer.parseInt(atraccionesGratisString[i]));
+                    atraccionesGratis[i] = (Atraccion) Boleteria.obtenerOfertablePorId(Integer.parseInt(atraccionesGratisString[i]));
                 }
 
                 promocionAAgregar = new PromocionAxB(id, nombre, atraccionesGratis);
@@ -87,17 +87,17 @@ public class PromocionDAOImpl implements GenericDAO<Promocion> {
 
     private List<Atraccion> atraccionesPorPromocion(int idPromocion) {
         try {
-            String sql = "SELECT id_atraccion FROM atracciones_en_promocion WHERE id_promocion = ?";
+            String idAtraccionesPorPromocion = "SELECT id_atraccion FROM atracciones_en_promocion WHERE id_promocion = ?";
             Connection conn = ConnectionProvider.getConnection();
 
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = conn.prepareStatement(idAtraccionesPorPromocion);
             statement.setInt(1, idPromocion);
 
             ResultSet resultados = statement.executeQuery();
             var atracciones = new LinkedList<Atraccion>();
 
             while (resultados.next()) {
-                atracciones.add(Boleteria.obtenerAtraccionPorId(resultados.getInt(1)));
+                atracciones.add((Atraccion) Boleteria.obtenerOfertablePorId(resultados.getInt(1)));
             }
 
             return atracciones;

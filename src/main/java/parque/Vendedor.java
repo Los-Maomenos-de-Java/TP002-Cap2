@@ -1,5 +1,6 @@
 package parque;
 
+import dao.DAOFactory;
 import model.Atraccion;
 import model.Itinerario;
 import model.Ofertable;
@@ -12,9 +13,11 @@ import java.util.Scanner;
 
 public class Vendedor {
     private List<Ofertable> ofertasVendidas = new ArrayList<>();
+    private Usuario usuario;
     private Scanner scan = new Scanner(System.in);
 
     public void iniciarVenta(Usuario usuario) {
+        this.usuario = usuario;
         this.ofertasVendidas = usuario.getOfertasCompradas();
         System.out.println("\nBienvenido " + usuario.getNombre() + "!\n\nVeo que tienes: $" + String.format("%.2f", usuario.getPresupuestoActual())
                 + " y " + String.format("%.2f", usuario.getTiempoDisponible()) + " horas disponibles \nTu preferencia son las atracciones de: " + usuario.getTipoDeAtraccionPreferida().toString());
@@ -76,7 +79,7 @@ public class Vendedor {
     public void mostrarItinerario() {
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("\nNo tengo nada más para ofrecer.\n\nEste es tu itinerario:");
-        Itinerario vendido = new Itinerario(this.ofertasVendidas);
+        Itinerario vendido = DAOFactory.getItinerarioDAO().itinerarioDe(this.usuario);
         vendido.mostrar();
         System.out.println("Presioná Enter para continuar...");
         scan.nextLine();

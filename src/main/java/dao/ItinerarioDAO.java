@@ -1,7 +1,9 @@
 package dao;
 
-import model.Itinerario;
+import model.*;
 
 public interface ItinerarioDAO extends GenericDAO<Itinerario> {
-    int insert();
+    int insertar(Usuario usuario, Ofertable ofertable);
+
+    Itinerario itinerarioDe(Usuario usuario);
 }

@@ -17,14 +17,17 @@ public class Boleteria {
     public Boleteria() {
         ofertables.addAll(DAOFactory.getAtraccionDAO().findAll());
         ofertables.addAll(DAOFactory.getPromocionDAO().findAll());
-        ofertables.forEach(System.out::println);
     }
 
-    public static Atraccion obtenerAtraccionPorId(int id) {
+    public static Ofertable obtenerOfertablePorId(int id) {
         for (Ofertable ofertable : ofertables) {
             if (!ofertable.esPromocion()) {
                 if (ofertable.getId() == id) {
                     return ofertable.getAtracciones().get(0);
+                }
+            } else {
+                if (ofertable.getId() == id) {
+                    return ofertable;
                 }
             }
         }
@@ -59,10 +62,13 @@ public class Boleteria {
     public void ofrecerA(Usuario usuario) throws IOException {
         this.ofertasOrdenadasPara(usuario);
         this.vendedor.iniciarVenta(usuario);
+
         while (!this.ofertasParaUsuario.isEmpty() && usuario.getPresupuestoActual() > 0 && usuario.getTiempoDisponible() > 0) {
             Ofertable ofertableSugerida = this.ofertasParaUsuario.remove(0);
+
             if (this.vendedor.ofrecer(ofertableSugerida)) {
                 usuario.comprarOferta(ofertableSugerida);
+                DAOFactory.getItinerarioDAO().insertar(usuario, ofertableSugerida);
                 this.ofertasFiltradasPara(usuario);
                 vendedor.continuarVenta(usuario);
             }

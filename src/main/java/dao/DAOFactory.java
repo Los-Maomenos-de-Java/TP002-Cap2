@@ -12,4 +12,6 @@ public class DAOFactory {
     public static UsuarioDAOImpl getUsuarioDAO() {
         return new UsuarioDAOImpl();
     }
+
+    public static ItinerarioDAOImpl getItinerarioDAO() { return new ItinerarioDAOImpl(); }
 }
