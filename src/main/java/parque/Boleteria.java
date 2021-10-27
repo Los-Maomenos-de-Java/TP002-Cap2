@@ -19,7 +19,16 @@ public class Boleteria {
         ofertables.addAll(DAOFactory.getPromocionDAO().findAll());
     }
 
-    public static Ofertable obtenerOfertablePorId(int id) {
+    public static Ofertable obtenerOfertablePorId(int id, boolean esPromocion ) {
+    	for (Ofertable ofertable : ofertables) {
+    		if((ofertable.esPromocion()) && (esPromocion) && (ofertable.getId() == id)) {
+    			return ofertable;
+    		} else if ((!ofertable.esPromocion()) && (!esPromocion) && (ofertable.getId() == id)) {
+    			return ofertable.getAtracciones().get(0);
+    		}
+    	}
+    	
+    	/*
         for (Ofertable ofertable : ofertables) {
             if (!ofertable.esPromocion()) {
                 if (ofertable.getId() == id) {
@@ -30,7 +39,7 @@ public class Boleteria {
                     return ofertable;
                 }
             }
-        }
+        }*/
         return null;
     }
 

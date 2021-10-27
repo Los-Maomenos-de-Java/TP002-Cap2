@@ -19,7 +19,19 @@ public class ItinerarioDAOImpl implements ItinerarioDAO {
     @Override
     public Itinerario itinerarioDe(Usuario usuario) {
         try {
-            String idPromociones = "SELECT fk_promocion FROM itinerarios WHERE fk_usuario = ? AND fk_promocion IS NOT NULL";
+        	String idOfertables = "SELECT coalesce(fk_atraccion, fk_promocion), fk_promocion IS NOT NULL FROM itinerarios WHERE fk_usuario = ?";
+        	Connection conn = ConnectionProvider.getConnection();
+        	
+            PreparedStatement statementOfertables = conn.prepareStatement(idOfertables);
+            statementOfertables.setInt(1, usuario.getId());
+        	
+            ResultSet resultadosOfertables = statementOfertables.executeQuery();
+            var ofertasCompradas = new LinkedList<Ofertable>();
+
+            while (resultadosOfertables.next()) {
+                ofertasCompradas.add(Boleteria.obtenerOfertablePorId(resultadosOfertables.getInt(1), resultadosOfertables.getBoolean(2)));
+            }
+            /*String idPromociones = "SELECT fk_promocion FROM itinerarios WHERE fk_usuario = ? AND fk_promocion IS NOT NULL";
             Connection conn = ConnectionProvider.getConnection();
 
             PreparedStatement statementPromociones = conn.prepareStatement(idPromociones);
@@ -41,7 +53,7 @@ public class ItinerarioDAOImpl implements ItinerarioDAO {
             while (resultadosAtracciones.next()) {
                 ofertasCompradas.add(Boleteria.obtenerOfertablePorId(resultadosAtracciones.getInt(1)));
             }
-
+			*/
             return new Itinerario(ofertasCompradas);
         } catch (Exception e) {
             throw new MissingDataException(e);

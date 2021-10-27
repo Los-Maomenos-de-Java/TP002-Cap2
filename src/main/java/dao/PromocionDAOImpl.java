@@ -68,7 +68,7 @@ public class PromocionDAOImpl implements GenericDAO<Promocion> {
                 var atraccionesGratis = new Atraccion[atraccionesGratisString.length];
 
                 for (int i = 0; i < atraccionesGratisString.length; i++) {
-                    atraccionesGratis[i] = (Atraccion) Boleteria.obtenerOfertablePorId(Integer.parseInt(atraccionesGratisString[i]));
+                    atraccionesGratis[i] = (Atraccion) Boleteria.obtenerOfertablePorId(Integer.parseInt(atraccionesGratisString[i]),false);
                 }
 
                 promocionAAgregar = new PromocionAxB(id, nombre, atraccionesGratis);
@@ -97,7 +97,7 @@ public class PromocionDAOImpl implements GenericDAO<Promocion> {
             var atracciones = new LinkedList<Atraccion>();
 
             while (resultados.next()) {
-                atracciones.add((Atraccion) Boleteria.obtenerOfertablePorId(resultados.getInt(1)));
+                atracciones.add((Atraccion) Boleteria.obtenerOfertablePorId(resultados.getInt(1),false));
             }
 
             return atracciones;
