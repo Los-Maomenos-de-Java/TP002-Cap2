@@ -10,19 +10,18 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-public class UsuarioDAOImpl implements GenericDAO<Usuario> {
+public class UsuarioDAOImpl {
     private static UsuarioDAOImpl instance;
 
-    public static UsuarioDAOImpl getInstance(){
+    public static UsuarioDAOImpl getInstance() {
         if (instance == null) {
             instance = new UsuarioDAOImpl();
         }
         return instance;
     }
 
-	@Override
-	public List<Usuario> findAll() {
-		try {
+    public List<Usuario> findAll() {
+        try {
             String sql = "SELECT * FROM usuarios";
             Connection conn = ConnectionProvider.getConnection();
 
@@ -40,26 +39,28 @@ public class UsuarioDAOImpl implements GenericDAO<Usuario> {
         }
     }
 
-	private Usuario toUsuario(ResultSet resultados) {
-		try {
+    private Usuario toUsuario(ResultSet resultados) {
+        try {
             var id = resultados.getInt(1);
             var nombre = resultados.getString(2);
             var presupuesto = resultados.getDouble(3);
             var tiempo_disponible = resultados.getDouble(4);
             TipoDeAtraccion tipo_atraccion_preferido = AtraccionDAOImpl.getTipoAtraccion(resultados.getInt(5));
-            
 
-            return new Usuario(id, nombre, presupuesto, tiempo_disponible, tipo_atraccion_preferido);
+            Usuario usuario = new Usuario(id, nombre, presupuesto, tiempo_disponible, tipo_atraccion_preferido);
+
+            usuario.setOfertasCompradas(ItinerarioDAOImpl.getInstance().itinerarioDe(usuario).getOfertas());
+
+            return usuario;
 
         } catch (Exception e) {
             throw new MissingDataException(e);
         }
 
-	}
+    }
 
-	@Override
-	public int update(Usuario usuario) {
-	    try {
+    public int update(Usuario usuario) {
+        try {
             String updateUsuario = "UPDATE usuarios SET presupuesto = ?, tiempo_disponible = ?  WHERE id = ?";
             Connection conn = ConnectionProvider.getConnection();
 
@@ -70,7 +71,7 @@ public class UsuarioDAOImpl implements GenericDAO<Usuario> {
 
             return statement.executeUpdate();
         } catch (Exception e) {
-	        throw new MissingDataException(e);
+            throw new MissingDataException(e);
         }
-	}
+    }
 }

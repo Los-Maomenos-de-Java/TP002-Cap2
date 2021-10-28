@@ -21,14 +21,14 @@ public class Boleteria {
         ofertables.addAll(PromocionDAOImpl.getInstance().findAll());
     }
 
-    public static Ofertable obtenerOfertablePorId(int id, boolean esPromocion ) {
-    	for (Ofertable ofertable : ofertables) {
-    		if((ofertable.esPromocion()) && (esPromocion) && (ofertable.getId() == id)) {
-    			return ofertable;
-    		} else if ((!ofertable.esPromocion()) && (!esPromocion) && (ofertable.getId() == id)) {
-    			return ofertable.getAtracciones().get(0);
-    		}
-    	}
+    public static Ofertable obtenerOfertablePorId(int id, boolean esPromocion) {
+        for (Ofertable ofertable : ofertables) {
+            if ((ofertable.esPromocion()) && (esPromocion) && (ofertable.getId() == id)) {
+                return ofertable;
+            } else if ((!ofertable.esPromocion()) && (!esPromocion) && (ofertable.getId() == id)) {
+                return ofertable.getAtracciones().get(0);
+            }
+        }
     	
     	/*
         for (Ofertable ofertable : ofertables) {

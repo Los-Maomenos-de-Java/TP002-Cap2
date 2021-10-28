@@ -10,17 +10,16 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-public class PromocionDAOImpl implements GenericDAO<Promocion> {
+public class PromocionDAOImpl {
     private static PromocionDAOImpl instance;
 
-    public static PromocionDAOImpl getInstance(){
+    public static PromocionDAOImpl getInstance() {
         if (instance == null) {
             instance = new PromocionDAOImpl();
         }
         return instance;
     }
 
-    @Override
     public List<Promocion> findAll() {
         try {
             String allPromociones = "SELECT * FROM promociones";
@@ -37,11 +36,6 @@ public class PromocionDAOImpl implements GenericDAO<Promocion> {
         } catch (Exception e) {
             throw new MissingDataException(e);
         }
-    }
-
-    @Override
-    public int update(Promocion promocion) {
-        return 0;
     }
 
     private Promocion toPromocion(ResultSet resultados) {
@@ -76,7 +70,7 @@ public class PromocionDAOImpl implements GenericDAO<Promocion> {
                 var atraccionesGratis = new Atraccion[atraccionesGratisString.length];
 
                 for (int i = 0; i < atraccionesGratisString.length; i++) {
-                    atraccionesGratis[i] = (Atraccion) Boleteria.obtenerOfertablePorId(Integer.parseInt(atraccionesGratisString[i]),false);
+                    atraccionesGratis[i] = (Atraccion) Boleteria.obtenerOfertablePorId(Integer.parseInt(atraccionesGratisString[i]), false);
                 }
 
                 promocionAAgregar = new PromocionAxB(id, nombre, atraccionesGratis);
@@ -105,7 +99,7 @@ public class PromocionDAOImpl implements GenericDAO<Promocion> {
             var atracciones = new LinkedList<Atraccion>();
 
             while (resultados.next()) {
-                atracciones.add((Atraccion) Boleteria.obtenerOfertablePorId(resultados.getInt(1),false));
+                atracciones.add((Atraccion) Boleteria.obtenerOfertablePorId(resultados.getInt(1), false));
             }
 
             return atracciones;

@@ -1,5 +1,6 @@
 package model;
 
+import dao.ItinerarioDAOImpl;
 import dao.UsuarioDAOImpl;
 
 import java.util.ArrayList;
@@ -48,6 +49,10 @@ public class Usuario {
         return this.tiempoDisponible >= ofertable.getTiempo() && this.presupuestoActual >= ofertable.getCosto();
     }
 
+    public void setOfertasCompradas(List<Ofertable> ofertasCompradas) {
+        this.ofertasCompradas = ofertasCompradas;
+    }
+
     public int getId() {
         return this.id;
     }
@@ -68,6 +73,10 @@ public class Usuario {
         return this.tipoDeAtraccionPreferida;
     }
 
+    public List<Ofertable> getOfertasCompradas() {
+        return this.ofertasCompradas;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -83,10 +92,6 @@ public class Usuario {
     @Override
     public int hashCode() {
         return Objects.hash(nombre, presupuestoActual, tiempoDisponible, tipoDeAtraccionPreferida);
-    }
-
-    public List<Ofertable> getOfertasCompradas() {
-        return this.ofertasCompradas;
     }
 
     @Override

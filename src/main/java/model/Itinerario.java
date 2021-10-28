@@ -14,6 +14,10 @@ public class Itinerario {
         System.out.println(this);
     }
 
+    public List<Ofertable> getOfertas() {
+        return this.ofertas;
+    }
+
     @Override
     public String toString() {
         String salida = "\n\t\t\t\tATRACCIONES COMPRADAS: "

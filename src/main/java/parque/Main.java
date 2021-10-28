@@ -13,7 +13,7 @@ public class Main {
         System.out.println(DibujadorDeHomero.saludo());
         Boleteria boleteria = new Boleteria();
 
-        for(Usuario usuario:usuarios) {
+        for (Usuario usuario : usuarios) {
             boleteria.ofrecerA(usuario);
         }
 
