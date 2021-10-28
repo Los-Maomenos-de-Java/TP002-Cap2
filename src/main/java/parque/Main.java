@@ -2,12 +2,13 @@ package parque;
 
 import java.io.IOException;
 import java.util.List;
-import dao.DAOFactory;
+
+import dao.UsuarioDAOImpl;
 import model.Usuario;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        List<Usuario> usuarios = DAOFactory.getUsuarioDAO().findAll();
+        List<Usuario> usuarios = UsuarioDAOImpl.getInstance().findAll();
 
         System.out.println(DibujadorDeHomero.saludo());
         Boleteria boleteria = new Boleteria();

@@ -1,6 +1,8 @@
 package parque;
 
-import dao.DAOFactory;
+import dao.AtraccionDAOImpl;
+import dao.ItinerarioDAOImpl;
+import dao.PromocionDAOImpl;
 import model.Atraccion;
 import model.Ofertable;
 import model.Usuario;
@@ -15,8 +17,8 @@ public class Boleteria {
     private Vendedor vendedor = new Vendedor();
 
     public Boleteria() {
-        ofertables.addAll(DAOFactory.getAtraccionDAO().findAll());
-        ofertables.addAll(DAOFactory.getPromocionDAO().findAll());
+        ofertables.addAll(AtraccionDAOImpl.getInstance().findAll());
+        ofertables.addAll(PromocionDAOImpl.getInstance().findAll());
     }
 
     public static Ofertable obtenerOfertablePorId(int id, boolean esPromocion ) {
@@ -77,7 +79,7 @@ public class Boleteria {
 
             if (this.vendedor.ofrecer(ofertableSugerida)) {
                 usuario.comprarOferta(ofertableSugerida);
-                DAOFactory.getItinerarioDAO().insertar(usuario, ofertableSugerida);
+                ItinerarioDAOImpl.getInstance().insertar(usuario, ofertableSugerida);
                 this.ofertasFiltradasPara(usuario);
                 vendedor.continuarVenta(usuario);
             }

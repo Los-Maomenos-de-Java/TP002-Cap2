@@ -4,7 +4,6 @@ import jdbc.ConnectionProvider;
 import model.TipoDeAtraccion;
 import model.Usuario;
 
-import javax.management.remote.rmi.RMIServerImpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +11,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class UsuarioDAOImpl implements GenericDAO<Usuario> {
+    private static UsuarioDAOImpl instance;
+
+    public static UsuarioDAOImpl getInstance(){
+        if (instance == null) {
+            instance = new UsuarioDAOImpl();
+        }
+        return instance;
+    }
 
 	@Override
 	public List<Usuario> findAll() {
@@ -66,5 +73,4 @@ public class UsuarioDAOImpl implements GenericDAO<Usuario> {
 	        throw new MissingDataException(e);
         }
 	}
-
 }

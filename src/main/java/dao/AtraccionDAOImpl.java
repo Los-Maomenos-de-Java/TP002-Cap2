@@ -11,6 +11,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class AtraccionDAOImpl implements GenericDAO<Atraccion> {
+    private static AtraccionDAOImpl instance;
+
+    public static AtraccionDAOImpl getInstance(){
+        if (instance == null) {
+            instance = new AtraccionDAOImpl();
+        }
+        return instance;
+    }
+
     @Override
     public List<Atraccion> findAll() {
         try {

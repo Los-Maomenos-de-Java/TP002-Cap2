@@ -1,6 +1,6 @@
 package model;
 
-import dao.DAOFactory;
+import dao.UsuarioDAOImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class Usuario {
             presupuestoActual -= ofertable.getCosto();
             tiempoDisponible -= ofertable.getTiempo();
             ofertasCompradas.add(ofertable);
-            DAOFactory.getUsuarioDAO().update(this);
+            UsuarioDAOImpl.getInstance().update(this);
             return true;
         }
         return false;

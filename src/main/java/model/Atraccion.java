@@ -1,6 +1,6 @@
 package model;
 
-import dao.DAOFactory;
+import dao.AtraccionDAOImpl;
 
 import java.util.List;
 import java.util.Objects;
@@ -37,7 +37,7 @@ public class Atraccion implements Ofertable {
     @Override
     public void serComprada() {
         this.cupo--;
-        DAOFactory.getAtraccionDAO().update(this);
+        AtraccionDAOImpl.getInstance().update(this);
     }
 
     @Override

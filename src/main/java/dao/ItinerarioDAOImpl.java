@@ -11,6 +11,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ItinerarioDAOImpl implements ItinerarioDAO {
+    private static ItinerarioDAOImpl instance;
+
+    public static ItinerarioDAOImpl getInstance(){
+        if (instance == null) {
+            instance = new ItinerarioDAOImpl();
+        }
+        return instance;
+    }
+
     @Override
     public List<Itinerario> findAll() {
         return null;

@@ -1,6 +1,6 @@
 package parque;
 
-import dao.DAOFactory;
+import dao.ItinerarioDAOImpl;
 import model.Atraccion;
 import model.Itinerario;
 import model.Ofertable;
@@ -79,7 +79,7 @@ public class Vendedor {
     public void mostrarItinerario() {
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("\nNo tengo nada más para ofrecer.\n\nEste es tu itinerario:");
-        Itinerario vendido = DAOFactory.getItinerarioDAO().itinerarioDe(this.usuario);
+        Itinerario vendido = ItinerarioDAOImpl.getInstance().itinerarioDe(this.usuario);
         vendido.mostrar();
         System.out.println("Presioná Enter para continuar...");
         scan.nextLine();
