@@ -45,9 +45,9 @@ public class UsuarioDAOImpl {
             var nombre = resultados.getString(2);
             var presupuesto = resultados.getDouble(3);
             var tiempo_disponible = resultados.getDouble(4);
-            TipoDeAtraccion tipo_atraccion_preferido = AtraccionDAOImpl.getTipoAtraccion(resultados.getInt(5));
+            TipoDeAtraccion tipo_atraccion_preferida = AtraccionDAOImpl.getTipoAtraccion(resultados.getInt(5));
 
-            Usuario usuario = new Usuario(id, nombre, presupuesto, tiempo_disponible, tipo_atraccion_preferido);
+            Usuario usuario = new Usuario(id, nombre, presupuesto, tiempo_disponible, tipo_atraccion_preferida);
 
             usuario.setOfertasCompradas(ItinerarioDAOImpl.getInstance().itinerarioDe(usuario).getOfertas());
 

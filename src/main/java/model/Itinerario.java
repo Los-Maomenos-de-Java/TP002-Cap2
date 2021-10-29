@@ -15,7 +15,7 @@ public class Itinerario {
     }
 
     public List<Ofertable> getOfertas() {
-        return this.ofertas;
+        return ofertas;
     }
 
     @Override

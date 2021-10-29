@@ -8,10 +8,11 @@ import model.Usuario;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        Boleteria boleteria = new Boleteria();
+
         List<Usuario> usuarios = UsuarioDAOImpl.getInstance().findAll();
 
         System.out.println(DibujadorDeHomero.saludo());
-        Boleteria boleteria = new Boleteria();
 
         for (Usuario usuario : usuarios) {
             boleteria.ofrecerA(usuario);

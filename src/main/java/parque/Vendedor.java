@@ -73,6 +73,7 @@ public class Vendedor {
         for (Ofertable oferta : this.ofertasVendidas) {
             atraccionesVendidas.addAll(oferta.getAtracciones());
         }
+
         return atraccionesVendidas;
     }
 

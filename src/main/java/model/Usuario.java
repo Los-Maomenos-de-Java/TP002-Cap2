@@ -50,7 +50,7 @@ public class Usuario {
     }
 
     public void setOfertasCompradas(List<Ofertable> ofertasCompradas) {
-        this.ofertasCompradas = ofertasCompradas;
+        this.ofertasCompradas.addAll(ofertasCompradas);
     }
 
     public int getId() {
