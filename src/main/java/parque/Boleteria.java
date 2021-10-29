@@ -29,19 +29,6 @@ public class Boleteria {
                 return ofertable.getAtracciones().get(0);
             }
         }
-    	
-    	/*
-        for (Ofertable ofertable : ofertables) {
-            if (!ofertable.esPromocion()) {
-                if (ofertable.getId() == id) {
-                    return ofertable.getAtracciones().get(0);
-                }
-            } else {
-                if (ofertable.getId() == id) {
-                    return ofertable;
-                }
-            }
-        }*/
         return null;
     }
 
@@ -71,14 +58,16 @@ public class Boleteria {
     }
 
     public void ofrecerA(Usuario usuario) throws IOException {
-        this.ofertasOrdenadasPara(usuario);
         this.vendedor.iniciarVenta(usuario);
-
+        this.ofertasOrdenadasPara(usuario);
+        
         while (!this.ofertasParaUsuario.isEmpty() && usuario.getPresupuestoActual() > 0 && usuario.getTiempoDisponible() > 0) {
             Ofertable ofertableSugerida = this.ofertasParaUsuario.remove(0);
 
             if (this.vendedor.ofrecer(ofertableSugerida)) {
+                ofertableSugerida.serComprada();
                 usuario.comprarOferta(ofertableSugerida);
+
                 ItinerarioDAOImpl.getInstance().insertar(usuario, ofertableSugerida);
                 this.ofertasFiltradasPara(usuario);
                 vendedor.continuarVenta(usuario);

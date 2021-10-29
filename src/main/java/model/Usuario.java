@@ -31,18 +31,14 @@ public class Usuario {
         }
     }
 
-    public boolean comprarOferta(Ofertable ofertable) {
+    public void comprarOferta(Ofertable ofertable) {
         if (!puedeVisitar(ofertable)) {
             throw new Error("No posee tiempo o dinero para comprar esta oferta");
         }
-        if (ofertable.tieneCupo()) {
-            presupuestoActual -= ofertable.getCosto();
-            tiempoDisponible -= ofertable.getTiempo();
-            ofertasCompradas.add(ofertable);
-            UsuarioDAOImpl.getInstance().update(this);
-            return true;
-        }
-        return false;
+        presupuestoActual -= ofertable.getCosto();
+        tiempoDisponible -= ofertable.getTiempo();
+        ofertasCompradas.add(ofertable);
+        UsuarioDAOImpl.getInstance().update(this);
     }
 
     public boolean puedeVisitar(Ofertable ofertable) {

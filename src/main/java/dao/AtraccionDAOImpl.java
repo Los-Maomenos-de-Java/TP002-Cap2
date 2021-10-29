@@ -41,10 +41,10 @@ public class AtraccionDAOImpl {
 
     public int update(Atraccion atraccion) {
         try {
-            String updateUsuario = "UPDATE atracciones SET cupo = ? WHERE id = ?";
+            String updateAtraccion = "UPDATE atracciones SET cupo = ? WHERE id = ?";
             Connection conn = ConnectionProvider.getConnection();
 
-            PreparedStatement statement = conn.prepareStatement(updateUsuario);
+            PreparedStatement statement = conn.prepareStatement(updateAtraccion);
             statement.setInt(1, atraccion.getCupo());
             statement.setInt(2, atraccion.getId());
 

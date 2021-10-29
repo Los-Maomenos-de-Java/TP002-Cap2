@@ -19,6 +19,7 @@ public class Vendedor {
     public void iniciarVenta(Usuario usuario) {
         this.usuario = usuario;
         this.ofertasVendidas = usuario.getOfertasCompradas();
+
         System.out.println("\nBienvenido " + usuario.getNombre() + "!\n\nVeo que tienes: $" + String.format("%.2f", usuario.getPresupuestoActual())
                 + " y " + String.format("%.2f", usuario.getTiempoDisponible()) + " horas disponibles \nTu preferencia son las atracciones de: " + usuario.getTipoDeAtraccionPreferida().toString());
     }
